@@ -1,0 +1,1 @@
+PersonnageManager.class.php
