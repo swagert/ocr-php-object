@@ -1,0 +1,16 @@
+header, footer {
+	background-color: #aaa;
+	width: 100%;
+}
+
+h1 {
+	color: #464646;
+	font-size: 25px;
+	padding: 35px 25px;
+	text-align: center;
+}
+
+label {
+	display: inline-block;
+	width: 250px;
+}
