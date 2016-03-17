@@ -13,12 +13,12 @@ spl_autoload_register(function($class)
 
 	if ($testManager == FALSE)
 	{
-    	require('BUNDLE/'.strtoupper($class).'MODEL/'.$class.'.class.php');
+    	require('BUNDLE/'.strtoupper($class).'/MODELS/'.$class.'.Class.php');
 	}
 	else
 	{
 		$dossier = str_replace('Manager', '', $class);
-    	require('BUNDLE/'.strtoupper($dossier).'/MODEL/'.$class.'.class.php');
+    	require('BUNDLE/'.strtoupper($dossier).'/MODELS/'.$class.'.Class.php');
 	}
 });
 
@@ -28,8 +28,8 @@ $page = 'home';
 
 try
 {
-    $bdd = new PDO('mysql:dbname=ocrCombat;host=db', 'root', 'root');
-    // $bdd = new PDO('mysql:dbname=tchat_object;host=localhost:8889', 'root', 'root');
+    $db = new PDO('mysql:dbname=ocrCombat;host=db', 'root', 'root');
+    // $db = new PDO('mysql:dbname=tchat_object;host=localhost:8889', 'root', 'root');
 }
 catch (PDOException $e)
 {

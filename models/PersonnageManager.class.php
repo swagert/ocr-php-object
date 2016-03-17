@@ -1,19 +1,21 @@
 <?php
-class PersonnagesManager {
+class PersonnageManager {
 
   private $_db; // Instance de PDO
 
   public function __construct($db) {
+    die('coucou');
     $this->setDb($db);
   }
 
   public function add(array $info) {
     $perso = new Personnage($info);
     $nameVerif = $this->_db->quote($perso->getName());
-    $degatsVerif = intvat($perso->getDegats());
+    $degatsVerif = intval($perso->getDegats());
     $query = "INSERT INTO personnage (name,degats) VALUES(" . $nameVerif . ", '" . $degatsVerif . "')";
     $res = $this->_db->exec($query);
-    if($res) {
+    if($res)
+    {
       $id = $this->_db->lastInsertId();
       return $this->getById($id);
     }
@@ -23,26 +25,30 @@ class PersonnagesManager {
 	{
 		$idVerif = intval($id);
 		$query = "SELECT * FROM personnage WHERE id='".$idVerif."'";
-		$res = $this->db->query($query);
-		if ($res) {
+		$res = $this->_db->query($query);
+		if ($res)
+    {
 			$perso = $res->fetchObject("Personnage");
 			if ($perso)
 			{
 				return $perso;
 			}
+    }
 	}
 
   public function getByName($name)
 	{
 		$nameVerif = $this->_db->quote($name);
 		$query = "SELECT * FROM personnage WHERE id=".$nameVerif."";
-		$res = $this->db->query($query);
-		if ($res) {
+		$res = $this->_db->query($query);
+		if ($res)
+    {
 			$perso = $res->fetchObject("Personnage");
 			if ($perso)
 			{
 				return $perso;
 			}
+    }
 	}
 
   public function get($info)
@@ -86,6 +92,8 @@ class PersonnagesManager {
   public function getList($nom)
   {
     $persos = [];
+
+
 
     $q = $this->_db->prepare('SELECT id, nom, degats FROM personnage WHERE nom <> :nom ORDER BY nom');
     $q->execute([':nom' => $nom]);

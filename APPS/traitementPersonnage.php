@@ -1,9 +1,8 @@
 <?php
-	if ($action == 'create')
+	if ($action == 'create_personnage')
 	{
-		if (isset($_POST['name_personnage'])) 
+		if (isset($_POST['name_personnage']))
 		{
-			
 			$information = array(
 				'name' => $_POST['name_personnage'],
 				'degats' => 0,
@@ -17,17 +16,17 @@
 
 	if ($action == 'create')
 	{
-		if (isset($_POST['select_personnage'])) 
+		if (isset($_POST['select_personnage']))
 		{
-			
+
 		}
 	}
 
 	if ($action == 'create')
 	{
-		if (isset($_POST['adversaire'])) 
+		if (isset($_POST['adversaire']))
 		{
-			
+
 		}
 	}
 ?>
