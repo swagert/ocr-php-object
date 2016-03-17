@@ -97,47 +97,45 @@ class PersonnageManager {
     $this->_db->exec('DELETE FROM personnage WHERE id = '.$perso->id());
   }
 
-  public function exists($info)
+  // public function exists($info)
+  // {
+  //   if (is_int($info)) // On veut voir si tel personnage ayant pour id $info existe.
+  //   {
+  //     return (bool) $this->_db->query('SELECT COUNT(*) FROM personnage WHERE id = '.$info)->fetchColumn();
+  //   }
+
+  //   // Sinon, c'est qu'on veut vérifier que le nom existe ou pas.
+
+  //   $q = $this->_db->prepare('SELECT COUNT(*) FROM personnage WHERE nom = :nom');
+  //   $q->execute([':nom' => $info]);
+
+  //   return (bool) $q->fetchColumn();
+  // }
+
+
+  // public function getList($nom)
+  // {
+  //   $persos = [];
+
+
+
+  //   $q = $this->_db->prepare('SELECT id, nom, degats FROM personnage WHERE nom <> :nom ORDER BY nom');
+  //   $q->execute([':nom' => $nom]);
+
+  //   while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+  //   {
+  //     $persos[] = new Personnage($donnees);
+  //   }
+
+  //   return $persos;
+  // }
+
+  public function updateDegats(Personnage $perso)
   {
-    if (is_int($info)) // On veut voir si tel personnage ayant pour id $info existe.
-    {
-      return (bool) $this->_db->query('SELECT COUNT(*) FROM personnage WHERE id = '.$info)->fetchColumn();
-    }
-
-    // Sinon, c'est qu'on veut vérifier que le nom existe ou pas.
-
-    $q = $this->_db->prepare('SELECT COUNT(*) FROM personnage WHERE nom = :nom');
-    $q->execute([':nom' => $info]);
-
-    return (bool) $q->fetchColumn();
-  }
-
-
-  public function getList($nom)
-  {
-    $persos = [];
-
-
-
-    $q = $this->_db->prepare('SELECT id, nom, degats FROM personnage WHERE nom <> :nom ORDER BY nom');
-    $q->execute([':nom' => $nom]);
-
-    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
-    {
-      $persos[] = new Personnage($donnees);
-    }
-
-    return $persos;
-  }
-
-  public function update(Personnage $perso)
-  {
-    $q = $this->_db->prepare('UPDATE personnage SET degats = :degats WHERE id = :id');
-
-    $q->bindValue(':degats', $perso->degats(), PDO::PARAM_INT);
-    $q->bindValue(':id', $perso->id(), PDO::PARAM_INT);
-
-    $q->execute();
+    $degatsVerif = $perso->getDegats();
+    $idVerif = $perso->getId();
+    $query = 'UPDATE personnage SET degats_personnage = "'.$degatsVerif.'" WHERE id_personnage = "'.$idVerif.'"';
+    $res = $this->_db->exec($query);
   }
 
   public function setDb(PDO $db)

@@ -31,11 +31,15 @@
 			}
 		}
 	}
-	elseif ($action == 'create')
+	elseif ($action == 'frapper_personnage')
 	{
 		if (isset($_POST['adversaire']))
 		{
-
+			$idAdversaire = $_POST['adversaire'];
+			$PersonnageManager = new PersonnageManager($db);
+			$Personnage = $PersonnageManager->getById($idAdversaire);
+			$Personnage->recevoirDegats();
+			$PersonnageManager->updateDegats($Personnage);
 		}
 	}
 ?>

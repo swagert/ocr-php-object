@@ -47,18 +47,25 @@ class Personnage {
     //   }
     // }
   }
-
-  public function recevoirDegats() {
-    $this->degats_personnage += 5;
-
-    // Si les dégâts sont strictement supérieur à 101, on dit que le personnage a été tué.
-    if($this->degats_personnage > 99) {
-      return self::PERSONNAGE_TUE;
+  public function recevoirDegats() 
+  {
+    if ($this->degats_personnage > 0)
+    {
+      $this->degats_personnage -= 5;
     }
-
-    // Sinon, on se contente de dire que le personnage a bien été frappé.
-    return self::PERSONNAGE_FRAPPE;
   }
+
+  // public function recevoirDegats() {
+  //   $this->degats_personnage += 5;
+
+  //   // Si les dégâts sont strictement supérieur à 101, on dit que le personnage a été tué.
+  //   if($this->degats_personnage > 99) {
+  //     return self::PERSONNAGE_TUE;
+  //   }
+
+  //   // Sinon, on se contente de dire que le personnage a bien été frappé.
+  //   return self::PERSONNAGE_FRAPPE;
+  // }
 
 
   // GETTERS //

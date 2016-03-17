@@ -1,5 +1,6 @@
 <form action="" method='POST'>
 	<label for="<?=htmlentities($Personnage->getId())?>"><?=htmlentities($Personnage->getName())?>
-		<button type="submit" name="adversaire" value="<?=htmlentities($Personnage->getId())?>" id="<?=htmlentities($Personnage->getId())?>"><?=htmlentities($Personnage->getDegats())?></button>
+		<input type="hidden" name="adversaire" value="<?=htmlentities($Personnage->getId())?>">
+		<button type="submit" name="action" value="frapper_personnage" id="<?=htmlentities($Personnage->getId())?>"><?=htmlentities($Personnage->getDegats())?></button>
 	</label>
 </form>

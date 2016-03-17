@@ -63,6 +63,7 @@ if (isset($_GET['page']))
 $traitement_action = [
 	'create_personnage' => 'Personnage',
 	'select_personnage' => 'Personnage',
+	'frapper_personnage' => 'Personnage',
 ];
 
 if (isset($_POST['action']))
