@@ -8,11 +8,11 @@ class PersonnageManager {
   }
 
   public function add(array $info) {
-    $perso = new Personnage($info);
-    var_dump($perso);
+    $perso = new Personnage();
+    $perso->hydrate($info);
     $nameVerif = $this->_db->quote($perso->getName());
     $degatsVerif = intval($perso->getDegats());
-    $query = "INSERT INTO personnage (name,degats) VALUES(" . $nameVerif . ", '" . $degatsVerif . "')";
+    $query = "INSERT INTO personnage (name_personnage,degats_personnage) VALUES(" . $nameVerif . ", '" . $degatsVerif . "')";
     $res = $this->_db->exec($query);
     if($res)
     {
@@ -23,9 +23,9 @@ class PersonnageManager {
 
   public function getById($id)
 	{
-		$idVerif = intval($id);
-		$query = "SELECT * FROM personnage WHERE id='".$idVerif."'";
-		$res = $this->_db->query($query);
+    $idVerif = intval($id);
+    $query = "SELECT * FROM personnage WHERE id_personnage='".$idVerif."'";
+    $res = $this->_db->query($query);
 		if ($res)
     {
 			$perso = $res->fetchObject("Personnage");
@@ -39,7 +39,7 @@ class PersonnageManager {
   public function getByName($name)
 	{
 		$nameVerif = $this->_db->quote($name);
-		$query = "SELECT * FROM personnage WHERE id=".$nameVerif."";
+		$query = "SELECT * FROM personnage WHERE id_personnage=".$nameVerif."";
 		$res = $this->_db->query($query);
 		if ($res)
     {
@@ -65,8 +65,32 @@ class PersonnageManager {
 
   public function count()
   {
-    return $this->_db->query('SELECT COUNT(*) FROM personnage')->fetchColumn();
+    $query = 'SELECT COUNT(*) FROM personnage';
+    $res = $this->_db->query($query);
+    if ($res) {
+      return $res->fetchColumn();
+    }
   }
+
+  public function listePersonnage()
+  {
+    $query = "SELECT * FROM personnage";
+    $res = $this->_db->query($query);
+    if ($res)
+    {
+      while($personnage = $res->fetchObject('Personnage'))
+      {
+        $personnages[] = $personnage;
+      }
+      return $personnages;
+    }
+  }
+
+
+
+
+
+  
 
   public function delete(Personnage $perso)
   {

@@ -1,3 +1,5 @@
-<label for="test">Test Adversaire
-	<button type="submit" name="adversaire" value="1" id="test">100 pv</button>
-</label>
+<form action="" method='POST'>
+	<label for="<?=htmlentities($Personnage->getId())?>"><?=htmlentities($Personnage->getName())?>
+		<button type="submit" name="adversaire" value="<?=htmlentities($Personnage->getId())?>" id="<?=htmlentities($Personnage->getId())?>"><?=htmlentities($Personnage->getDegats())?></button>
+	</label>
+</form>

@@ -1,11 +1,5 @@
 <?php
 
-// var_dump($_GET);
-// var_dump($_POST);
-// var_dump($_SESSION);
-// exit;
-
-
 spl_autoload_register(function($class)
 {
 	$findme    = 'Manager';
@@ -24,11 +18,18 @@ spl_autoload_register(function($class)
 
 session_start();
 
+// var_dump($_GET);
+var_dump($_POST);
+var_dump($_SESSION);
+// exit;
+
+
+
 $page = 'home';
 
 try
 {
-    $db = new PDO('mysql:dbname=ocrCombat;host=db', 'root', 'root');
+    $db = new PDO('mysql:dbname=jeu;host=localhost:8889', 'root', 'root');
     // $db = new PDO('mysql:dbname=tchat_object;host=localhost:8889', 'root', 'root');
 }
 catch (PDOException $e)
