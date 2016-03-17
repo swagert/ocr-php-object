@@ -1,1 +1,20 @@
-home.php
+<div>
+	<p>nombre de personnage creer = <?=htmlentities('test')?></p>
+	<fieldset>
+      	<legend>creer un personnage</legend>
+		<?php require('BUNDLE/PERSONNAGE/APPS/create.php'); ?>
+    </fieldset>
+    <fieldset>
+      	<legend>selectionner un personnage</legend>
+		<?php require('BUNDLE/PERSONNAGE/APPS/selectionner.php'); ?>
+    </fieldset>
+    <fieldset>
+      	<legend>personnage selectionner</legend>
+		<?= $_SESSION['name'] ?>
+    </fieldset>
+    <fieldset>
+      	<legend>personnage ennemi</legend>
+		<?php require('BUNDLE/PERSONNAGE/APPS/adversaire.php'); ?>
+    </fieldset>
+
+</div>

@@ -1,1 +1,1 @@
-content.php
+<?php require('APPS/'.$page.'.php'); ?>

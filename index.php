@@ -13,12 +13,12 @@ spl_autoload_register(function($class)
 
 	if ($testManager == FALSE)
 	{
-    	require('MODULE/'.strtoupper($class).'MODEL/'.$class.'.class.php');
+    	require('BUNDLE/'.strtoupper($class).'MODEL/'.$class.'.class.php');
 	}
 	else
 	{
 		$dossier = str_replace('Manager', '', $class);
-    	require('MODULE/'.strtoupper($dossier).'/MODEL/'.$class.'.class.php');
+    	require('BUNDLE/'.strtoupper($dossier).'/MODEL/'.$class.'.class.php');
 	}
 });
 
@@ -26,12 +26,10 @@ session_start();
 
 $page = 'home';
 
-// require('APPS/listeErrors.php');
-// require('config.php');
-
 try
 {
     $bdd = new PDO('mysql:dbname=ocrCombat;host=db', 'root', 'root');
+    // $bdd = new PDO('mysql:dbname=tchat_object;host=localhost:8889', 'root', 'root');
 }
 catch (PDOException $e)
 {
@@ -62,11 +60,8 @@ if (isset($_GET['page']))
 }
 
 $traitement_action = [
-	'register' => 'User',
-	'login' => 'User',
-	'logout' => 'User',
-	'information' => 'User',
-	'create_message' => 'Message',
+	'create_personnage' => 'Personnage',
+	'select_personnage' => 'Personnage',
 ];
 
 if (isset($_POST['action']))
@@ -79,4 +74,5 @@ if (isset($_POST['action']))
 	}
 }
 
+require('APPS/skel.php');
 ?>
