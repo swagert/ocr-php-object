@@ -11,7 +11,7 @@ spl_autoload_register(function($class)
 	$findme    = 'Manager';
 	$testManager = stripos($class, $findme);
 
-	if ($testManager == FALSE) 
+	if ($testManager == FALSE)
 	{
     	require('MODULE/'.strtoupper($class).'MODEL/'.$class.'.class.php');
 	}
@@ -26,12 +26,12 @@ session_start();
 
 $page = 'home';
 
-require('APPS/listeErrors.php');
-require('config.php');
+// require('APPS/listeErrors.php');
+// require('config.php');
 
 try
 {
-    $bdd = new PDO('mysql:dbname=tchat_object;host=192.168.1.7', 'root', 'troiswa');
+    $bdd = new PDO('mysql:dbname=ocrCombat;host=db', 'root', 'root');
 }
 catch (PDOException $e)
 {
@@ -69,10 +69,10 @@ $traitement_action = [
 	'create_message' => 'Message',
 ];
 
-if (isset($_POST['action'])) 
+if (isset($_POST['action']))
 {
 	$action = $_POST['action'];
-	if (isset($traitement_action[$action])) 
+	if (isset($traitement_action[$action]))
 	{
 		$value = $traitement_action[$action];
 		require('APPS/traitement'.$value.'.php');
